@@ -1,0 +1,25 @@
+:root {
+  --theme-accent: "#FFC700";
+  --theme-main: "#FFFFFF";
+  --theme-bgd: "#222527";
+}
+
+.DeathStarImg {
+  position: absolute;
+  right: 26%;
+  bottom: 0;
+  width: 28%;
+  min-width: 100px;
+  opacity: 40%;
+  transform: translateY(30%);
+}
+
+.AchievementsSection {
+  padding: 60px 0;
+  background-color: var(--theme-bgd);
+}
+
+.AchievementsHeader.AchievementsHeader {
+  margin-bottom: clamp(48px, 5vw, 60px);
+  font-size: 1.3rem;
+}
