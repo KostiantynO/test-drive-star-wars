@@ -24,3 +24,17 @@ export const StyledTitle = styled(Title)`
   margin-bottom: clamp(48px, 5vw, 60px);
   font-size: 1.3rem;
 `;
+
+export const StaticPaginationButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+`;

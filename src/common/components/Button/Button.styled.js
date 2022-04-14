@@ -7,20 +7,50 @@ export const ButtonStyled = styled.button.attrs(({ type }) => ({
   align-items: center;
   justify-content: center;
 
-  padding: clamp(8px, 3vw, 16px) clamp(16px, 3vw, 32px);
+  padding: ${({ secondary }) =>
+    secondary
+      ? "clamp(4px, 3vw, 8px) clamp(8px, 3vw, 16px)"
+      : "clamp(8px, 3vw, 16px) clamp(16px, 3vw, 32px)"};
 
   /* Принести клятву верности */ /* main */
   font-family: inherit;
   font-size: ${({ theme }) => theme.text.main.fontSize};
   line-height: ${({ theme }) => theme.text.main.lineHeight};
-  color: ${({ theme: { themes, main, currentTheme } }) =>
-    currentTheme !== themes.dark ? main.dark : main.light};
+
+  color: ${({ theme: { main, themes, currentTheme }, secondary }) => {
+    switch (currentTheme) {
+      case themes.dark:
+        return secondary ? main.dark : main.light;
+
+      case themes.light:
+        return secondary ? main.light : main.dark;
+
+      default:
+        return secondary ? main.dark : main.light;
+    }
+  }};
 
   cursor: pointer;
-  background-color: ${({ theme: { themes, main, accent, currentTheme } }) =>
-    currentTheme !== themes.dark ? accent.light : accent.dark};
 
-  border: none;
+  background-color: ${({
+    theme: { themes, bgSecond, accent, currentTheme },
+    secondary,
+  }) => {
+    switch (currentTheme) {
+      case themes.dark:
+        return secondary ? bgSecond.dark : accent.dark;
+
+      case themes.light:
+        return secondary ? bgSecond.light : accent.light;
+
+      default:
+        return secondary ? bgSecond.dark : accent.dark;
+    }
+  }};
+
+  border: 1px solid
+    ${({ secondary }) => (secondary ? "rgba(255,255,255,0.21)" : "transparent")};
+
   border-radius: ${({ round }) => (round ? "50%" : "40px")};
 
   ${({ theme }) => theme.transition("color", "background-color", "transform")}
@@ -33,6 +63,8 @@ export const ButtonStyled = styled.button.attrs(({ type }) => ({
   }
 
   :disabled {
+    cursor: not-allowed;
     background-color: grey;
+    opacity: 0.5;
   }
 `;

@@ -1,4 +1,4 @@
-import { styled, theme } from "common";
+import { styled } from "common";
 import { ButtonStyled } from "./Button.styled";
 
 export const IconButtonStyled = styled(ButtonStyled)`

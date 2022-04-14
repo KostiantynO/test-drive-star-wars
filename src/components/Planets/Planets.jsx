@@ -1,38 +1,94 @@
-import { useQuery } from "react-query";
 import { Planet } from "./Planet";
-import { PlanetList, StyledTitle } from "./Planets.styled";
+import {
+  PlanetList,
+  StyledTitle,
+  StaticPaginationButtonsContainer,
+} from "./Planets.styled";
+import { Button } from "common";
+import { useCustomQuery } from "hooks";
+import { Pagination } from "./Pagination";
+import styled from "styled-components";
 
-const fetchPlanets = async () => {
-  const res = await fetch("https://swapi.dev/api/planets/");
+const fetchPlanets = async ({ queryKey: [key, page] }) => {
+  const res = await fetch(`https://swapi.dev/api/planets/?page=${page}`);
   return res.json();
 };
 
-export const Planets = () => {
-  const { data, status } = useQuery("planets", fetchPlanets);
+const PlanetsContainer = styled.div`
+  width: 100%;
+`;
 
-  const isError = status === "error";
-  const isLoading = status === "loading";
-  const isSuccess = status === "success";
+// const collator = new Intl.Collator(undefined, {
+//   sensitivity: 'base',
+//   numeric: true,
+// });
+
+const comparePopulation = (a, b) => {
+  if (isNaN(a.population)) return 1;
+  if (isNaN(b.population)) return -1;
+  return b.population - a.population;
+};
+
+export const Planets = () => {
+  const {
+    data,
+    page,
+    lastPage,
+    setPage,
+    isError,
+    isLoading,
+    isSuccess,
+    isPrevButtonDisabled,
+    isNextButtonDisabled,
+    setPrevPage,
+    setNextPage,
+    setLastPage,
+  } = useCustomQuery("planets", fetchPlanets);
 
   return (
-    <div>
+    <PlanetsContainer>
       <StyledTitle h="3" title="Planets" />
+
+      <StaticPaginationButtonsContainer>
+        <Button secondary onClick={() => setPage(1)}>
+          page 1
+        </Button>
+
+        <Button secondary onClick={() => setPage(2)}>
+          page 2
+        </Button>
+
+        <Button secondary onClick={() => setPage(3)}>
+          page 3
+        </Button>
+      </StaticPaginationButtonsContainer>
+
       {isLoading && (
-        <div>Loading data ... (from https://swapi.dev/api/planets/)</div>
+        <div>Loading data ... (https://swapi.dev/api/planets/)</div>
       )}
 
       {isError && <div>Error fetching data</div>}
 
       {isSuccess && (
-        <PlanetList>
-          {data?.results
-            ?.sort((a, b) => b.population - a.population)
-            .map((planet) => (
+        <>
+          <Pagination
+            page={page}
+            lastPage={lastPage}
+            setPrevPage={setPrevPage}
+            setNextPage={setNextPage}
+            setLastPage={setLastPage}
+            isPrevButtonDisabled={isPrevButtonDisabled}
+            isNextButtonDisabled={isNextButtonDisabled}
+          />
+
+          <PlanetList>
+            {data?.results?.sort(comparePopulation).map((planet) => (
               <Planet key={planet.name} planet={planet} />
             ))}
-        </PlanetList>
+          </PlanetList>
+        </>
       )}
-    </div>
+    </PlanetsContainer>
   );
 };
 

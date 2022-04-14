@@ -1,4 +1,4 @@
-import { styled, theme } from "common";
+import { styled } from "common";
 
 export const ToggleStyled = styled.div`
   display: flex;

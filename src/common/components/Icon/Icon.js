@@ -3,7 +3,7 @@ import { IconStyled } from "./Icon.styled";
 
 export const Icon = ({ icon = "placeholder", children, ...props }) => (
   <IconStyled {...props} icon={icon}>
-    <use href={iconPath(icon)}></use>
+    <use href={iconPath(icon)} />
     {children}
   </IconStyled>
 );
