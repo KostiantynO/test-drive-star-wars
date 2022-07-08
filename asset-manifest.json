@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/test-drive-star-wars/static/css/main.997895b8.css",
+    "main.js": "/test-drive-star-wars/static/js/main.936630e4.js",
+    "static/js/391.eba314a0.chunk.js": "/test-drive-star-wars/static/js/391.eba314a0.chunk.js",
+    "static/media/darth-vader.webp": "/test-drive-star-wars/static/media/darth-vader.07df9579fc1747ef5efc.webp",
+    "static/media/death-star.webp": "/test-drive-star-wars/static/media/death-star.bdb526cae994a6e6d37e.webp",
+    "static/media/stardust.webp": "/test-drive-star-wars/static/media/stardust.16a369d887d071c71cbc.webp",
+    "static/media/space.webp": "/test-drive-star-wars/static/media/space.1b506029983fe86d86ac.webp",
+    "static/media/sprite.svg": "/test-drive-star-wars/static/media/sprite.ea8771f1156d1a03d6dddddf847f6207.svg",
+    "index.html": "/test-drive-star-wars/index.html",
+    "main.997895b8.css.map": "/test-drive-star-wars/static/css/main.997895b8.css.map",
+    "main.936630e4.js.map": "/test-drive-star-wars/static/js/main.936630e4.js.map",
+    "391.eba314a0.chunk.js.map": "/test-drive-star-wars/static/js/391.eba314a0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.997895b8.css",
+    "static/js/main.936630e4.js"
+  ]
+}
